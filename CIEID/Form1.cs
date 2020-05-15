@@ -197,9 +197,32 @@ namespace CIEID
 
         private void selectHome()
         {
-            if (Properties.Settings.Default.serialNumber.Equals(""))
+
+            if(Properties.Settings.Default.cardHolder.Equals(""))
             {
                 tabControlMain.SelectedIndex = 0;
+            }
+            else if (Properties.Settings.Default.efSeriale.Equals(""))
+            {
+
+                tabControlMain.SelectedIndex = 1;
+                var result = MessageBox.Show("E’ necessario procedere con un nuovo abbinamento", "Abbinare nuovamente la CIE", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (result == DialogResult.Yes)
+                {
+                    Properties.Settings.Default.serialNumber = "";
+                    Properties.Settings.Default.efSeriale = "";
+                    Properties.Settings.Default.cardHolder = "";
+                    Properties.Settings.Default.Save();
+                    tabControlMain.SelectedIndex = 0;
+                }
+                else
+                {
+                    //Properties.Settings.Default.efSeriale = "Abbinare nuovamente la CIE per visualizzare il numero della carta";
+                    labelSerialNumber.Text = "Numero di carta non disponibile, procedere con un nuovo abbinamento";
+                    labelCardHolder.Text = Properties.Settings.Default.cardHolder;
+                    Properties.Settings.Default.Save();
+                    tabControlMain.SelectedIndex = 1;
+                }
             }
             else
             {
@@ -215,7 +238,8 @@ namespace CIEID
             buttonTutorial.BackColor = Color.Transparent;
             buttonInfo.BackColor = Color.Transparent;
             buttonHelp.BackColor = Color.Transparent;
-        }
+    }
+        
 
         private void selectAbbinaProgress()
         {
