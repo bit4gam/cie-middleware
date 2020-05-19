@@ -229,7 +229,7 @@ namespace CIEID
                     labelCardHolder.Text = Properties.Settings.Default.cardHolder;
                     Properties.Settings.Default.Save();
                     labelSerialNumber.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                    labelSerialNumber.Text = "Numero carta non disponibile, effettuare un nuovo abbinamento.";
+                    labelSerialNumber.Text = "Numero carta non disponibile,\neffettuare un nuovo abbinamento.";
                     labelSerialNumber.MaximumSize = new Size(220, 50);
                     labelSerialNumber.AutoSize = true;
                     labelCardHolder.Text = Properties.Settings.Default.cardHolder;
@@ -244,11 +244,12 @@ namespace CIEID
             {
                 tabControlMain.SelectedIndex = 1;
                 labelSerialNumber.Font = new Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                labelSerialNumber.Size = new Size(108, 20);
-                labelSerialNumber.Location = new System.Drawing.Point(223, 171);
-                label7.Location = new Point(224, 200);
-                labelCardHolder.Location = new System.Drawing.Point(223, 214);
 
+                //labelSerialNumber.Size = new Size(108, 20);
+                //labelSerialNumber.Location = new System.Drawing.Point(223, 171);
+                //label7.Location = new Point(224, 200);
+                //labelCardHolder.Location = new System.Drawing.Point(223, 214);
+                labelSerialNumber.AutoSize = true;
                 labelSerialNumber.Text = Properties.Settings.Default.efSeriale;
                 labelCardHolder.Text = Properties.Settings.Default.cardHolder;
                 labelCardHolder.MaximumSize = new Size(200, 0);
