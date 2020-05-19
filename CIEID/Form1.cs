@@ -217,23 +217,16 @@ namespace CIEID
                 var result = MessageBox.Show("E’ necessario effettuare un nuovo abbinamento. Procedere?", "Abbinare nuovamente la CIE", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (result == DialogResult.Yes)
                 {
-                    Properties.Settings.Default.serialNumber = "";
-                    Properties.Settings.Default.efSeriale = "";
-                    Properties.Settings.Default.cardHolder = "";
-                    Properties.Settings.Default.Save();
                     tabControlMain.SelectedIndex = 0;
                 }
                 else
                 {
-                    //Properties.Settings.Default.efSeriale = "Abbinare nuovamente la CIE per visualizzare il numero della carta";
                     labelCardHolder.Text = Properties.Settings.Default.cardHolder;
                     Properties.Settings.Default.Save();
                     labelSerialNumber.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                     labelSerialNumber.Text = "Per visualizzarlo occorre\nrifare l'abbinamento";
                     labelSerialNumber.AutoSize = true;
                     labelCardHolder.Text = Properties.Settings.Default.cardHolder;
-
-
 
                     tabControlMain.SelectedIndex = 1;
                 }
