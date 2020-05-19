@@ -105,7 +105,9 @@ Section "Install"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "IPZS"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "VersionMajor" "0"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "VersionMinor" "1"
-  SetRegView lastused
+  ${If} ${RunningX64}
+	SetRegView lastused
+  ${EndIf}
 
   ExecWait 'schtasks.exe /create /xml "$INSTDIR\UpdateTask.xml" /tn "CIE Middleware Update" /f'
   
@@ -150,7 +152,9 @@ Section "Uninstall"
   ${EndIf}
   DeleteRegKey /ifempty HKLM "Software\CIEPKI"
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
-  SetRegView lastused
+  ${If} ${RunningX64}
+	SetRegView lastused
+  ${EndIf}
 
   SetShellVarContext all
   RMDir /r "$SMPROGRAMS\CIE Middleware"
