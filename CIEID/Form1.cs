@@ -213,34 +213,49 @@ namespace CIEID
             else if (Properties.Settings.Default.efSeriale.Equals(""))
             {
 
+
                 tabControlMain.SelectedIndex = 1;
                 var result = MessageBox.Show("E’ necessario effettuare un nuovo abbinamento. Procedere?", "Abbinare nuovamente la CIE", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (result == DialogResult.Yes)
                 {
+
                     tabControlMain.SelectedIndex = 0;
                 }
                 else
                 {
                     labelCardHolder.Text = Properties.Settings.Default.cardHolder;
                     Properties.Settings.Default.Save();
-                    labelSerialNumber.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
                     labelSerialNumber.Text = "Per visualizzarlo occorre\nrifare l'abbinamento";
-                    labelSerialNumber.AutoSize = true;
                     labelCardHolder.Text = Properties.Settings.Default.cardHolder;
 
+                    int y = labelSerialNumber.Height + labelSerialNumber.Location.Y + 10;
+                    int x = label7.Location.X;
+                    label7.Location = new System.Drawing.Point(x, y);
+
+                    y = label7.Height + label7.Location.Y;
+                    x = labelCardHolder.Location.X;
+                    labelCardHolder.Location = new System.Drawing.Point(x, y);
+                    
+                    labelCardHolder.MaximumSize = new Size(labelCardHolder.Parent.Width - x, buttonDeleteCIE.Location.Y - y - 10);
+                    
                     tabControlMain.SelectedIndex = 1;
                 }
             }
             else
             {
-                tabControlMain.SelectedIndex = 1;
                 labelSerialNumber.Font = new Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                int y = labelSerialNumber.Height + labelSerialNumber.Location.Y + 10;
+                int x = label7.Location.X;
+                label7.Location = new System.Drawing.Point(x, y);
 
-                labelSerialNumber.AutoSize = true;
                 labelSerialNumber.Text = Properties.Settings.Default.efSeriale;
                 labelCardHolder.Text = Properties.Settings.Default.cardHolder;
 
-                labelCardHolder.AutoSize = true;
+                y = label7.Height + label7.Location.Y;
+                x = labelCardHolder.Location.X;
+                labelCardHolder.Location = new System.Drawing.Point(x, y);
+                labelCardHolder.MaximumSize = new Size(labelCardHolder.Parent.Width - x, buttonDeleteCIE.Location.Y - y - 10);
                 tabControlMain.SelectedIndex = 1;
             }
 
